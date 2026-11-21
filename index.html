@@ -1,49 +1,17 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Balagh Main Menu</title><script src="./support.js"></script></head><body><x-dc><helmet><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet"><style>body{margin:0}*{box-sizing:border-box}.s{width:390px;height:844px;background:#F4F7F5;font-family:Inter,"Noto Sans Arabic",sans-serif;color:#263238;display:flex;flex-direction:column;overflow:hidden}.row{display:flex;align-items:center;gap:12px}.btn{min-height:56px;width:100%;border-radius:16px;border:0;font-family:inherit;font-weight:700;font-size:17px;line-height:1.2;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 16px;cursor:pointer;text-decoration:none}.g{background:#1B5E3A;color:#fff}.r{background:#C62828;color:#fff}.l{background:#DDF1E4;color:#14472B}.w{background:#fff;color:#14472B;border:2px solid #1B5E3A}.lg{border:2px solid #1B5E3A;background:#fff;color:#14472B;border-radius:12px;min-height:48px;padding:0 14px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer}.card{background:#fff;border-radius:20px;padding:16px}.in{width:100%;min-height:52px;border:2px solid #78909C;border-radius:12px;padding:0 14px;font-family:inherit;font-size:17px;background:#fff;color:#263238}.err{color:#B71C1C;font-size:14px;font-weight:600}.tile{flex-direction:column;min-height:124px;font-size:18px}.lk{border:0;background:none;color:#14472B;font-family:inherit;font-weight:700;font-size:16px;min-height:48px;text-decoration:underline;cursor:pointer}.s{position:relative}.sc{flex:1;overflow-y:auto}</style></helmet>
-<div class="s" dir="{{dir}}">
-<div class="row" style="padding:14px 14px 4px;gap:8px"><svg width="40" height="40" viewBox="0 0 44 44" role="img" aria-label="Balagh"><rect width="44" height="44" rx="12" fill="#1B5E3A"/><path d="M22 9c-5.5 0-9.5 4-9.5 9.3C12.5 25 22 35 22 35s9.5-10 9.5-16.7C31.5 13 27.5 9 22 9z" fill="#fff"/><rect x="20.5" y="14" width="3" height="8" rx="1.5" fill="#1B5E3A"/><circle cx="22" cy="25.5" r="1.8" fill="#1B5E3A"/></svg><div style="flex:1;font-weight:700;font-size:22px;color:#14472B">{{t.name}}</div><button class="lg" aria-label="{{t.sizeL}}" onClick="{{cycleZ}}">{{zl}}</button><button class="lg" onClick="{{toggleLang}}">{{t.lang}}</button></div>
-<div class="sc"><div style="zoom:{{zoom}};padding:8px 16px 12px;display:flex;flex-direction:column;gap:14px">
-<div><h1 style="margin:0;font-size:26px;line-height:1.25">{{t.hello}}</h1><p style="margin:4px 0 0;font-size:16px;line-height:1.5;color:#455A64">{{t.sub}}</p></div>
-<div class="card" style="padding:14px;border:2px solid #C62828"><div style="font-weight:700;font-size:19px;color:#B71C1C">{{t.emg}}</div><div style="font-size:14px;line-height:1.4;color:#455A64;margin:2px 0 10px">{{t.emgSub}}</div>
-<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px"><button class="btn r" style="min-height:68px;font-size:16px;flex-direction:column;gap:4px;padding:6px" onClick="{{p_pol}}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>{{t.pol}}</button><button class="btn r" style="min-height:68px;font-size:16px;flex-direction:column;gap:4px;padding:6px" onClick="{{p_amb}}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg>{{t.amb}}</button><button class="btn r" style="min-height:68px;font-size:16px;flex-direction:column;gap:4px;padding:6px" onClick="{{p_cd}}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/></svg>{{t.cd}}</button><button class="btn r" style="min-height:68px;font-size:16px;flex-direction:column;gap:4px;padding:6px" onClick="{{p_rs}}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3L4 21M17 3l3 18M12 4v3M12 11v3M12 18v3"/></svg>{{t.rs}}</button></div></div>
-<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
-<a class="btn g tile" href="SubmitReport.dc.html"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z M14 3v5h5 M12 12v6 M9 15h6"/></svg>{{t.submit}}</a>
-<sc-if value="{{out}}" hint-placeholder-val="{{ true }}"><a class="btn l tile" href="Login.dc.html"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>{{t.mine}}</a></sc-if>
-<sc-if value="{{inn}}" hint-placeholder-val="{{ false }}"><button class="btn l tile" onClick="{{showM}}"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>{{t.mine}}</button></sc-if></div>
-<sc-if value="{{out}}" hint-placeholder-val="{{ true }}"><a class="btn w" href="Login.dc.html"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>{{t.login}}</a></sc-if>
-<sc-if value="{{inn}}" hint-placeholder-val="{{ false }}"><div class="row" style="gap:10px"><button class="btn w" onClick="{{showP}}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>{{t.profile}}</button><button class="btn w" onClick="{{logout}}">{{t.logout}}</button></div></sc-if>
-<sc-if value="{{hasMsg}}" hint-placeholder-val="{{ false }}"><div role="status" style="background:#fff;border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.5;color:#455A64">{{msg}}</div></sc-if>
-<button class="lk" style="font-size:13px;font-weight:400;color:#455A64" onClick="{{toggleAuth}}">{{t.demo}}</button>
-</div></div>
-<sc-if value="{{conf}}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;z-index:5"><div role="dialog" aria-label="{{svcName}}" style="background:#fff;width:100%;border-radius:24px 24px 0 0;padding:22px 18px 26px;display:flex;flex-direction:column;gap:12px">
-<div style="font-weight:700;font-size:21px">{{t.confT}} {{svcName}}</div><div style="font-size:15px;line-height:1.5;color:#455A64">{{confN}}</div>
-<sc-if value="{{calling}}" hint-placeholder-val="{{ false }}"><button class="btn r" onClick="{{closeC}}">{{t.close}}</button></sc-if>
-<sc-if value="{{notCalling}}" hint-placeholder-val="{{ true }}"><button class="btn r" onClick="{{doCall}}">{{svg_ph}}{{t.call}} {{svcName}}</button><button class="btn w" onClick="{{closeC}}">{{t.cancel}}</button></sc-if>
-</div></div></sc-if>
-</div></x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
-class Component extends DCLogic {
-state = { lang: 'en', z: 0, inn: false, msg: '', svc: '', calling: false };
-ld(){try{return JSON.parse(localStorage.getItem("bg")||"{}")}catch(e){return {}}}
-sv(o){try{localStorage.setItem("bg",JSON.stringify(Object.assign(this.ld(),o)))}catch(e){}}
-componentDidMount(){const d=this.ld();this.setState({lang:d.lang||"en",z:d.z||0,inn:!!d.inn});}
-renderVals() {
-const s = this.state, ar = s.lang === 'ar', i = s.inn;
-const T = ar ? { name:'بلاغ', lang:'English', hello: i ? 'أهلًا بعودتك' : 'مرحبًا بك في بلاغ', sub:'أبلغ عن مشكلة عامة أو تواصل مع خدمات الطوارئ.', emg:'خدمات الطوارئ', emgSub:'اتصال مباشر. بدون تسجيل دخول وبدون إنترنت.', pol:'الشرطة', amb:'الإسعاف', cd:'الدفاع المدني', rs:'أمن الطرق', submit:'إرسال بلاغ', mine:'بلاغاتي', login:'تسجيل الدخول / حساب جديد', profile:'الملف الشخصي', logout:'تسجيل الخروج', demo: i ? 'عرض حالة عدم تسجيل الدخول' : 'عرض حالة تسجيل الدخول', confT:'الاتصال بـ', call:'اتصال', cancel:'إلغاء', close:'إغلاق', dial:'يفتح تطبيق الاتصال بالرقم الرسمي للخدمة (محاكاة).' }
-: { name:'Balagh', lang:'عربي', hello: i ? 'Welcome back' : 'Welcome to Balagh', sub:'Report a public issue or reach emergency help.', emg:'Emergency Services', emgSub:'Direct call. No login and no internet needed.', pol:'Police', amb:'Ambulance', cd:'Civil Defense', rs:'Road Security', submit:'Submit a Report', mine:'My Reports', login:'Log in / Register', profile:'Profile', logout:'Log out', demo: i ? 'Preview signed-out state' : 'Preview signed-in state', confT:'Call', call:'Call', cancel:'Cancel', close:'Close', dial:'Opens your phone dialer with the official number of the service (simulated).' };
-T.sizeL = ar ? 'حجم النص' : 'Text size';
-const m = (en, a) => () => this.setState({ msg: ar ? a : en });
-const sv = (k) => () => this.setState({ svc: k, calling: false });
-return { dir: ar ? 'rtl' : 'ltr', zoom: [1, 1.15, 1.3][s.z], zl: ['A', 'A+', 'A++'][s.z],
-cycleZ: () => { const z = (s.z + 1) % 3; this.sv({ z }); this.setState({ z }); },
-toggleLang: () => { const l = ar ? 'en' : 'ar'; this.sv({ lang: l }); this.setState({ lang: l }); }, t: T, zoom: [1, 1.15, 1.3][s.z], inn: i, out: !i, msg: s.msg, hasMsg: !!s.msg,
-conf: !!s.svc, svcName: s.svc ? T[s.svc] : '', calling: s.calling, notCalling: !s.calling, svg_ph: '',
-confN: s.calling ? T.dial : (ar ? 'سيُطلب منك التأكيد قبل الاتصال لتجنب المكالمات العرضية.' : 'Confirm to place the call. This prevents accidental calls.'),
-p_pol: sv('pol'), p_amb: sv('amb'), p_cd: sv('cd'), p_rs: sv('rs'),
-doCall: () => this.setState({ calling: true }), closeC: () => this.setState({ svc: '', calling: false }),
-toggleAuth: () => { this.sv({ inn: !i }); this.setState({ inn: !i, msg: '' }); },
-logout: () => { this.sv({ inn: false }); this.setState({ inn: false, msg: '' }); },
-showM: m('Opens the My Reports screen (designed separately).', 'يفتح شاشة بلاغاتي (تصميم منفصل).'),
-showP: m('Opens the Profile screen (designed separately).', 'يفتح شاشة الملف الشخصي (تصميم منفصل).') };
-}
-}
-</script></body></html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بلاغ | Balagh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="app" aria-live="polite"></div>
+<noscript>Balagh needs JavaScript. بلاغ يحتاج إلى تفعيل JavaScript.</noscript>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
