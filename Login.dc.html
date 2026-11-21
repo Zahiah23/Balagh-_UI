@@ -1,0 +1,55 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Balagh Login</title><script src="./support.js"></script></head><body><x-dc><helmet><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet"><style>body{margin:0}*{box-sizing:border-box}.s{width:390px;height:844px;background:#F4F7F5;font-family:Inter,"Noto Sans Arabic",sans-serif;color:#263238;display:flex;flex-direction:column;overflow:hidden}.row{display:flex;align-items:center;gap:12px}.btn{min-height:56px;width:100%;border-radius:16px;border:0;font-family:inherit;font-weight:700;font-size:17px;line-height:1.2;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 16px;cursor:pointer;text-decoration:none}.g{background:#1B5E3A;color:#fff}.r{background:#C62828;color:#fff}.l{background:#DDF1E4;color:#14472B}.w{background:#fff;color:#14472B;border:2px solid #1B5E3A}.lg{border:2px solid #1B5E3A;background:#fff;color:#14472B;border-radius:12px;min-height:48px;padding:0 14px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer}.card{background:#fff;border-radius:20px;padding:16px}.in{width:100%;min-height:52px;border:2px solid #78909C;border-radius:12px;padding:0 14px;font-family:inherit;font-size:17px;background:#fff;color:#263238}.err{color:#B71C1C;font-size:14px;font-weight:600}.tile{flex-direction:column;min-height:124px;font-size:18px}.lk{border:0;background:none;color:#14472B;font-family:inherit;font-weight:700;font-size:16px;min-height:48px;text-decoration:underline;cursor:pointer}.s{position:relative}.sc{flex:1;overflow-y:auto}</style></helmet>
+<div class="s" dir="{{dir}}">
+<div class="row" style="padding:14px 14px 4px;gap:8px"><span></span><div style="flex:1;font-weight:700;font-size:22px;color:#14472B">{{t.name}}</div><button class="lg" aria-label="{{t.sizeL}}" onClick="{{cycleZ}}">{{zl}}</button><button class="lg" onClick="{{toggleLang}}">{{t.lang}}</button></div>
+<div class="sc"><div style="zoom:{{zoom}};padding:0 20px 12px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center"><svg width="60" height="60" viewBox="0 0 44 44" role="img" aria-label="Balagh"><rect width="44" height="44" rx="12" fill="#1B5E3A"/><path d="M22 9c-5.5 0-9.5 4-9.5 9.3C12.5 25 22 35 22 35s9.5-10 9.5-16.7C31.5 13 27.5 9 22 9z" fill="#fff"/><rect x="20.5" y="14" width="3" height="8" rx="1.5" fill="#1B5E3A"/><circle cx="22" cy="25.5" r="1.8" fill="#1B5E3A"/></svg><h1 style="margin:6px 0 0;font-size:25px">{{t.title}}</h1><p style="margin:0;font-size:16px;line-height:1.5;color:#455A64">{{t.sub}}</p></div>
+<div class="card" style="display:flex;flex-direction:column;gap:12px">
+<sc-if value="{{isPhone}}" hint-placeholder-val="{{ true }}">
+<label for="ph" style="font-weight:700;font-size:16px">{{t.phone}}</label>
+<div class="row" dir="ltr" style="gap:8px"><span style="font-weight:700;font-size:17px;padding:0 4px">+966</span><input id="ph" class="in" inputmode="numeric" autocomplete="tel" placeholder="5X XXX XXXX" value="{{phone}}" onInput="{{onPhone}}"></div>
+<sc-if value="{{errP}}" hint-placeholder-val="{{ false }}"><div class="err" role="alert">{{t.ePhone}}</div></sc-if>
+<sc-if value="{{reg}}" hint-placeholder-val="{{ false }}"><label class="row" style="align-items:flex-start;gap:10px;min-height:48px"><input type="checkbox" checked="{{consent}}" onChange="{{onConsent}}" style="width:28px;height:28px;flex:none;accent-color:#1B5E3A"><span style="font-size:14px;line-height:1.5">{{t.consent}}</span></label>
+<sc-if value="{{errC}}" hint-placeholder-val="{{ false }}"><div class="err" role="alert">{{t.eCons}}</div></sc-if></sc-if>
+<button class="btn g" onClick="{{send}}">{{t.send}}</button>
+</sc-if>
+<sc-if value="{{isOtp}}" hint-placeholder-val="{{ false }}">
+<label for="otp" style="font-weight:700;font-size:16px">{{t.otp}}</label>
+<input id="otp" class="in" dir="ltr" inputmode="numeric" maxlength="6" style="letter-spacing:8px;text-align:center;font-size:24px" value="{{otp}}" onInput="{{onOtp}}">
+<sc-if value="{{errO}}" hint-placeholder-val="{{ false }}"><div class="err" role="alert">{{t.eOtp}}</div></sc-if>
+<button class="btn g" onClick="{{verify}}">{{t.verify}}</button>
+<button class="btn w" onClick="{{back}}">{{t.change}}</button>
+</sc-if>
+<sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:#1B5E3A;font-weight:700;font-size:20px"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>{{t.done}}</div>
+<a class="btn g" href="Main.dc.html">{{t.cont}}</a><button class="btn w" onClick="{{logout}}">{{t.logout}}</button>
+</sc-if>
+</div>
+<sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}"><button class="lk" onClick="{{toggleMode}}">{{t.sw}}</button><div style="font-size:13px;line-height:1.5;color:#455A64;text-align:center">{{t.hint}}</div></sc-if>
+<a class="btn r" href="Main.dc.html"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>{{t.emg}}</a>
+</div></div></div></x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+state = { lang: 'en', z: 0, inn: false, reg: false, step: 'phone', phone: '', otp: '', err: '', consent: false };
+ld(){try{return JSON.parse(localStorage.getItem("bg")||"{}")}catch(e){return {}}}
+sv(o){try{localStorage.setItem("bg",JSON.stringify(Object.assign(this.ld(),o)))}catch(e){}}
+componentDidMount(){const d=this.ld();this.setState({lang:d.lang||"en",z:d.z||0,inn:!!d.inn});}
+renderVals() {
+const s = this.state, ar = s.lang === 'ar', r = s.reg;
+const T = ar ? { name:'بلاغ', lang:'English', title: r ? 'إنشاء حساب' : 'تسجيل الدخول', sub:'أدخل رقم جوالك وسنرسل لك رمز تحقق لمرة واحدة.', phone:'رقم الجوال', send:'إرسال الرمز', otp:'رمز التحقق (6 أرقام)', verify: r ? 'تحقق وأنشئ الحساب' : 'تحقق وسجّل الدخول', change:'تغيير الرقم', ePhone:'أدخل رقم جوال سعوديًا صحيحًا: 9 أرقام تبدأ بالرقم 5.', eOtp:'الرمز غير صحيح. تحقق منه وحاول مرة أخرى.', done: r ? 'تم إنشاء حسابك' : 'تم تسجيل الدخول', cont:'المتابعة إلى القائمة الرئيسية', logout:'تسجيل الخروج', sw: r ? 'لديك حساب؟ سجّل الدخول' : 'جديد في بلاغ؟ أنشئ حسابًا', hint:'نموذج تجريبي: أي رقم صحيح يعمل، والرمز هو 123456 (محاكاة).', emg:'حالة طارئة؟ خدمات الطوارئ بدون تسجيل دخول', consent:'أوافق على أن يجمع بلاغ رقم جوالي وموقعي وصوري لغرض إرسال بلاغاتي فقط، وفق نظام حماية البيانات الشخصية السعودي.', eCons:'يجب الموافقة للمتابعة.', sizeL:'حجم النص' }
+: { name:'Balagh', lang:'عربي', title: r ? 'Create your account' : 'Log in', sub:'Enter your mobile number. We will send you a one-time code.', phone:'Mobile number', send:'Send code', otp:'Verification code (6 digits)', verify: r ? 'Verify and create account' : 'Verify and log in', change:'Change number', ePhone:'Enter a valid Saudi mobile number: 9 digits starting with 5.', eOtp:'Incorrect code. Check it and try again.', done: r ? 'Your account is ready' : 'You are logged in', cont:'Continue to Main Menu', logout:'Log out', sw: r ? 'Already registered? Log in' : 'New to Balagh? Create an account', hint:'Prototype: any valid number works and the code is 123456 (simulated).', emg:'Emergency? Services need no login', consent:'I agree that Balagh collects my mobile number, location and photos only to send my reports, in line with the Saudi Personal Data Protection Law.', eCons:'You must agree to continue.', sizeL:'Text size' };
+return { dir: ar ? 'rtl' : 'ltr', zoom: [1, 1.15, 1.3][s.z], zl: ['A', 'A+', 'A++'][s.z],
+cycleZ: () => { const z = (s.z + 1) % 3; this.sv({ z }); this.setState({ z }); },
+toggleLang: () => { const l = ar ? 'en' : 'ar'; this.sv({ lang: l }); this.setState({ lang: l }); }, t: T, phone: s.phone, otp: s.otp, reg: r, consent: s.consent,
+isPhone: s.step === 'phone', isOtp: s.step === 'otp', isDone: s.step === 'done', notDone: s.step !== 'done',
+errP: s.err === 'p', errO: s.err === 'o', errC: s.err === 'c',
+toggleMode: () => this.setState({ reg: !r, step: 'phone', otp: '', err: '' }),
+onConsent: (e) => this.setState({ consent: e.target.checked, err: '' }),
+onPhone: (e) => this.setState({ phone: e.target.value, err: '' }),
+onOtp: (e) => this.setState({ otp: e.target.value, err: '' }),
+send: () => !/^5\d{8}$/.test(s.phone.replace(/\D/g, '').replace(/^(966|0)/, '')) ? this.setState({ err: 'p' }) : (r && !s.consent) ? this.setState({ err: 'c' }) : this.setState({ step: 'otp', err: '' }),
+verify: () => { if (s.otp.trim() === '123456') { this.sv({ inn: true }); this.setState({ step: 'done', inn: true, err: '' }); } else this.setState({ err: 'o' }); },
+logout: () => { this.sv({ inn: false }); this.setState({ step: 'phone', phone: '', otp: '', inn: false }); },
+back: () => this.setState({ step: 'phone', otp: '', err: '' }) };
+}
+}
+</script></body></html>

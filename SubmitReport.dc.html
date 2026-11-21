@@ -1,0 +1,88 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Balagh Submit Report</title><script src="./support.js"></script></head><body><x-dc><helmet><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet"><style>body{margin:0}*{box-sizing:border-box}.s{width:390px;height:844px;background:#F4F7F5;font-family:Inter,"Noto Sans Arabic",sans-serif;color:#263238;display:flex;flex-direction:column;overflow:hidden}.row{display:flex;align-items:center;gap:12px}.btn{min-height:56px;width:100%;border-radius:16px;border:0;font-family:inherit;font-weight:700;font-size:17px;line-height:1.2;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 16px;cursor:pointer;text-decoration:none}.g{background:#1B5E3A;color:#fff}.r{background:#C62828;color:#fff}.l{background:#DDF1E4;color:#14472B}.w{background:#fff;color:#14472B;border:2px solid #1B5E3A}.lg{border:2px solid #1B5E3A;background:#fff;color:#14472B;border-radius:12px;min-height:48px;padding:0 14px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer}.card{background:#fff;border-radius:20px;padding:16px}.in{width:100%;min-height:52px;border:2px solid #78909C;border-radius:12px;padding:0 14px;font-family:inherit;font-size:17px;background:#fff;color:#263238}.err{color:#B71C1C;font-size:14px;font-weight:600}.tile{flex-direction:column;min-height:124px;font-size:18px}.lk{border:0;background:none;color:#14472B;font-family:inherit;font-weight:700;font-size:16px;min-height:48px;text-decoration:underline;cursor:pointer}.s{position:relative}.sc{flex:1;overflow-y:auto}</style></helmet>
+<div class="s" dir="{{dir}}">
+<div style="background:#fff;padding:10px 12px 8px;border-bottom:1px solid #CFD8DC">
+<div class="row" style="gap:6px"><a href="Main.dc.html" aria-label="{{t.menu}}" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;color:#14472B;transform:{{flip}}"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><h1 style="margin:0;flex:1;font-size:20px">{{t.title}}</h1><button class="lg" aria-label="{{t.sizeL}}" onClick="{{cycleZ}}">{{zl}}</button><button class="lg" onClick="{{toggleLang}}">{{t.lang}}</button></div>
+<sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}"><div class="row" style="gap:6px;padding:8px 6px 0"><div style="flex:1;height:6px;border-radius:3px;background:#1B5E3A"></div><div style="flex:1;height:6px;border-radius:3px;background:{{bar2}}"></div></div></sc-if>
+</div>
+<div class="sc"><div style="zoom:{{zoom}};padding:14px;display:flex;flex-direction:column;gap:12px">
+<div class="row" style="gap:8px;flex-wrap:wrap"><button class="lg" style="font-size:14px" aria-pressed="{{off}}" onClick="{{toggleOff}}">{{t.off}}: {{offTxt}}</button><sc-if value="{{drafted}}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;font-weight:700;color:#14472B">{{t.draftOk}}</span></sc-if></div>
+<sc-if value="{{s1}}" hint-placeholder-val="{{ true }}">
+<div class="card"><div style="font-weight:700;font-size:17px;margin-bottom:10px">{{t.cat}}</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="4"><button aria-pressed="{{c.sel}}" onClick="{{c.pick}}" style="min-height:64px;border-radius:14px;font-family:inherit;font-weight:700;font-size:16px;line-height:1.3;padding:8px 10px;cursor:pointer;{{c.st}}">{{c.label}}</button></sc-for></div>
+<sc-if value="{{errC}}" hint-placeholder-val="{{ false }}"><div class="err" role="alert" style="margin-top:8px">{{t.eCat}}</div></sc-if></div>
+<div class="card" style="display:flex;flex-direction:column;gap:8px"><label for="au" style="font-weight:700;font-size:17px">{{t.auth}}</label>
+<select id="au" class="in" value="{{auth}}" onChange="{{onAuth}}"><option value="m">{{t.aM}}</option><option value="h">{{t.aH}}</option><option value="o">{{t.aO}}</option></select>
+<div style="font-size:14px;line-height:1.5;color:#455A64">{{t.sug}}<br>{{t.sim}}</div></div>
+<div class="card" style="display:flex;flex-direction:column;gap:8px"><label for="ds" style="font-weight:700;font-size:17px">{{t.desc}}</label>
+<textarea id="ds" class="in" style="min-height:110px;padding:12px;line-height:1.5" placeholder="{{t.ph}}" value="{{desc}}" onInput="{{onDesc}}"></textarea>
+<sc-if value="{{errD}}" hint-placeholder-val="{{ false }}"><div class="err" role="alert">{{t.eDesc}}</div></sc-if></div>
+<div class="card" style="display:flex;flex-direction:column;gap:10px"><div class="row" style="justify-content:space-between"><span style="font-weight:700;font-size:17px">{{t.photos}}</span><span style="font-weight:700;color:#455A64">{{n}} / 5</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{tiles}}" as="p" hint-placeholder-count="2"><button aria-label="{{p.lbl}}" onClick="{{p.rm}}" style="position:relative;width:72px;height:72px;padding:0;border-radius:12px;border:2px solid #1B5E3A;background:#DDF1E4;overflow:hidden;cursor:pointer"><img src="{{p.src}}" alt="" style="width:100%;height:100%;object-fit:cover;display:block"><span style="position:absolute;top:3px;inset-inline-end:3px;background:#fff;color:#B71C1C;border-radius:11px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px">×</span></button></sc-for></div>
+<div class="row" style="gap:10px"><label class="btn w" style="min-height:52px;font-size:15px;cursor:pointer;flex:1">{{t.take}}<input type="file" accept="image/*" capture="environment" style="display:none" onChange="{{onFile}}"></label><label class="btn w" style="min-height:52px;font-size:15px;cursor:pointer;flex:1">{{t.up}}<input type="file" accept="image/*"  multiple style="display:none" onChange="{{onFile}}"></label></div><div style="font-size:13px;color:#455A64">{{t.photoN}}</div></div>
+<div class="card" style="display:flex;flex-direction:column;gap:10px"><div style="font-weight:700;font-size:17px">{{t.loc}}</div>
+<div onClick="{{onMap}}" style="position:relative;height:150px;border-radius:14px;overflow:hidden;background:#E3EFE7;border:2px solid #78909C;cursor:crosshair"><svg width="100%" height="100%" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40L100 18M30 0L45 60M70 0L62 60" stroke="#fff" stroke-width="5" fill="none"/><path d="M0 12L55 30L100 48" stroke="#B7D3C0" stroke-width="2" fill="none"/></svg>
+<div style="position:absolute;left:{{px}}%;top:{{py}}%;transform:translate(-50%,-100%);pointer-events:none;color:#1B5E3A"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z M12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></div></div>
+<div style="font-size:14px;line-height:1.5"><b>{{gpsL}}</b><br>{{coord}}<br><span style="color:#455A64">{{accT}}</span></div>
+<button class="btn w" style="min-height:52px;font-size:15px" aria-pressed="{{adj}}" onClick="{{toggleAdj}}">{{adjTxt}}</button></div>
+</sc-if>
+<sc-if value="{{s2}}" hint-placeholder-val="{{ false }}">
+<div class="card" style="display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.5"><div style="font-weight:700;font-size:19px">{{t.review}}</div>
+<div><b>{{t.cat}}</b><br>{{catName}}</div><div><b>{{t.auth}}</b><br>{{authName}}<br><span style="font-size:14px;color:#455A64">{{t.sim}}</span></div><div><b>{{t.desc}}</b><br>{{desc}}</div>
+<div><b>{{t.photos}}</b> ({{n}} / 5)<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"><sc-for list="{{thumbs}}" as="q" hint-placeholder-count="1"><img src="{{q.src}}" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:8px;background:#DDF1E4"></sc-for></div></div>
+<div><b>{{t.loc}}</b><br>{{coord}}</div></div>
+<sc-if value="{{gate}}" hint-placeholder-val="{{ false }}"><div class="card" style="border:2px solid #B71C1C;display:flex;flex-direction:column;gap:10px"><div class="err" role="alert">{{t.gate}}</div><a class="btn w" href="Login.dc.html">{{t.loginL}}</a><button class="btn w" onClick="{{demoIn}}">{{t.demoIn}}</button></div></sc-if>
+</sc-if>
+<sc-if value="{{s3}}" hint-placeholder-val="{{ false }}">
+<div class="card" style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:28px 18px"><div style="color:#1B5E3A"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></div><div style="font-weight:700;font-size:22px">{{okTitle}}</div>
+<sc-if value="{{hasRef}}" hint-placeholder-val="{{ true }}"><div style="font-size:15px;color:#455A64">{{t.refl}}</div><div style="background:#DDF1E4;color:#14472B;border-radius:12px;padding:12px 18px;font-weight:700;font-size:22px;letter-spacing:1px" dir="ltr">{{ref}}</div></sc-if>
+<div style="font-size:15px;line-height:1.5;color:#455A64">{{okNote}}</div></div>
+</sc-if>
+</div></div>
+<div style="background:#fff;border-top:1px solid #CFD8DC;padding:12px 16px 20px;display:flex;flex-direction:column;gap:10px">
+<sc-if value="{{s1}}" hint-placeholder-val="{{ true }}"><button class="btn g" onClick="{{toReview}}">{{t.next}}</button><button class="btn w" style="min-height:48px;font-size:15px" onClick="{{saveDraft}}">{{t.saveD}}</button></sc-if>
+<sc-if value="{{s2}}" hint-placeholder-val="{{ false }}"><button class="btn g" onClick="{{submit}}">{{t.submit}}</button><button class="btn w" onClick="{{toEdit}}">{{t.back}}</button></sc-if>
+<sc-if value="{{s3}}" hint-placeholder-val="{{ false }}"><a class="btn g" href="Main.dc.html">{{t.menu}}</a><button class="btn w" onClick="{{again}}">{{t.another}}</button></sc-if>
+</div>
+</div></x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+state = { lang:'en', z:0, inn:false, step:1, cat:'', auth:'m', desc:'', photos:[], px:50, py:60, adj:false, off:false, errC:false, errD:false, ref:'', draft:false, drafted:false, gate:false, lat:24.47, lon:39.608, acc:15, real:false };
+ld(){try{return JSON.parse(localStorage.getItem("bg")||"{}")}catch(e){return {}}}
+sv(o){try{localStorage.setItem("bg",JSON.stringify(Object.assign(this.ld(),o)))}catch(e){}}
+componentDidMount(){if(navigator.geolocation)navigator.geolocation.getCurrentPosition((p)=>this.setState({lat:p.coords.latitude,lon:p.coords.longitude,acc:Math.round(p.coords.accuracy),real:true}),()=>{},{timeout:6000});const d=this.ld();this.setState({lang:d.lang||"en",z:d.z||0,inn:!!d.inn});}
+renderVals() {
+const s = this.state, ar = s.lang === 'ar', n = s.photos.length;
+const EN = { name:'Balagh', title:'Submit a Report', lang:'عربي', sizeL:'Text size', menu:'Main Menu', off:'Simulate offline', on:'On', offv:'Off', cat:'Report category', cats:['Road damage','Cleanliness','Health and safety violation','Other'], eCat:'Choose a category.', auth:'Authority', aM:'Municipality', aH:'Ministry of Health', aO:'Other authority', sug:'Suggested for the selected category. You can change it.', sim:'Routing is simulated in this prototype.', desc:'Describe the issue', ph:'What did you see, and where exactly?', eDesc:'Describe the issue before continuing.', photos:'Photos (1 to 5)', photoN:'Tap a photo to remove it. Maximum 5 photos.', take:'Take photo', up:'Upload photos', rm:'Remove photo', loc:'Location', gps:'Current GPS location', gpsS:'Sample location (GPS unavailable)', acc:'Accuracy', accW:'Accuracy is above 20 m. Adjust the pin if needed.', adj:'Adjust location on map', adjOn:'Tap the map to move the pin. Tap here when done.', next:'Review report', saveD:'Save as draft', draftOk:'Draft saved on this device', review:'Review your report', submit:'Submit Report', back:'Back to edit', gate:'Log in to submit this report. Your data above is kept.', loginL:'Log in', demoIn:'Demo: sign in', okT:'Report submitted', okN:'Delivery to the authority is simulated in this prototype.', dT:'Saved as a draft', dN:'No connection. Balagh keeps the report and sends it automatically when you are back online. Turn the offline switch off to see it.', refl:'Reference number', another:'Submit another report' };
+const AR = { name:'بلاغ', title:'إرسال بلاغ', lang:'English', sizeL:'حجم النص', menu:'القائمة الرئيسية', off:'محاكاة عدم الاتصال', on:'مفعّل', offv:'متوقف', cat:'فئة البلاغ', cats:['أضرار الطرق','النظافة','مخالفة صحية أو سلامة','أخرى'], eCat:'اختر فئة.', auth:'الجهة', aM:'البلدية', aH:'وزارة الصحة', aO:'جهة أخرى', sug:'مقترحة حسب الفئة المختارة. يمكنك تغييرها.', sim:'التوجيه محاكى في هذا النموذج.', desc:'صف المشكلة', ph:'ماذا رأيت، وأين تحديدًا؟', eDesc:'صف المشكلة قبل المتابعة.', photos:'الصور (من 1 إلى 5)', photoN:'اضغط على الصورة لحذفها. الحد الأقصى 5 صور.', take:'التقاط صورة', up:'رفع صور', rm:'حذف الصورة', loc:'الموقع', gps:'موقعك الحالي عبر GPS', gpsS:'موقع تجريبي (GPS غير متاح)', acc:'الدقة', accW:'الدقة أقل من المطلوب (أكثر من 20 م). عدّل الدبوس عند الحاجة.', adj:'تعديل الموقع على الخريطة', adjOn:'اضغط على الخريطة لتحريك الدبوس. اضغط هنا عند الانتهاء.', next:'مراجعة البلاغ', saveD:'حفظ كمسودة', draftOk:'تم حفظ المسودة على الجهاز', review:'راجع بلاغك', submit:'إرسال البلاغ', back:'رجوع للتعديل', gate:'سجّل الدخول لإرسال هذا البلاغ. بياناتك محفوظة.', loginL:'تسجيل الدخول', demoIn:'تجريبي: تسجيل الدخول', okT:'تم إرسال البلاغ', okN:'تسليم البلاغ للجهة محاكى في هذا النموذج.', dT:'تم الحفظ كمسودة', dN:'لا يوجد اتصال. يحتفظ بلاغ بالبلاغ ويرسله تلقائيًا عند عودة الاتصال. أوقف مفتاح عدم الاتصال لرؤية ذلك.', refl:'الرقم المرجعي', another:'إرسال بلاغ آخر' };
+const t = ar ? AR : EN, keys = ['road','clean','health','other'], map = { road:'m', clean:'m', health:'h', other:'o' };
+const names = { m:t.aM, h:t.aH, o:t.aO };
+const lat = (s.lat + (60 - s.py) * 0.00005).toFixed(5), lon = (s.lon + (s.px - 50) * 0.00005).toFixed(5);
+const mk = () => 'BLG-2026-' + Math.floor(100000 + Math.random() * 900000);
+return { dir: ar ? 'rtl' : 'ltr', zoom: [1, 1.15, 1.3][s.z], zl: ['A', 'A+', 'A++'][s.z],
+cycleZ: () => { const z = (s.z + 1) % 3; this.sv({ z }); this.setState({ z }); },
+toggleLang: () => { const l = ar ? 'en' : 'ar'; this.sv({ lang: l }); this.setState({ lang: l }); }, t, flip: ar ? 'scaleX(-1)' : 'none', coord: lat + '° N, ' + lon + '° E', px:s.px, py:s.py, n, auth:s.auth, desc:s.desc,
+gpsL: s.real ? t.gps : t.gpsS, accT: t.acc + ': ' + s.acc + ' m' + (s.acc > 20 ? '. ' + t.accW : ''),
+s1: s.step === 1, s2: s.step === 2, s3: s.step === 3, notDone: s.step !== 3, bar2: s.step > 1 ? '#1B5E3A' : '#CFD8DC',
+off: s.off, offTxt: s.off ? t.on : t.offv, errC: s.errC, errD: s.errD, drafted: s.drafted, gate: s.gate, adj: s.adj, adjTxt: s.adj ? t.adjOn : t.adj,
+cats: keys.map((k, i) => ({ label: t.cats[i], sel: s.cat === k, st: s.cat === k ? 'background:#1B5E3A;color:#fff;border:2px solid #1B5E3A' : 'background:#fff;color:#14472B;border:2px solid #78909C', pick: () => this.setState({ cat:k, auth:map[k], errC:false }) })),
+tiles: s.photos.map((u, i) => ({ src: u, lbl: t.rm + ' ' + (i + 1), rm: () => this.setState({ photos: s.photos.filter((_, j) => j !== i) }) })),
+thumbs: s.photos.map((u) => ({ src: u })),
+catName: s.cat ? t.cats[keys.indexOf(s.cat)] : '', authName: names[s.auth],
+okTitle: s.draft ? t.dT : t.okT, okNote: s.draft ? t.dN : t.okN, hasRef: !s.draft, ref: s.ref,
+toggleOff: () => { const off = !s.off; this.setState(off || !(s.step === 3 && s.draft) ? { off } : { off, draft: false, ref: mk() }); },
+onAuth: (e) => this.setState({ auth: e.target.value }),
+onDesc: (e) => this.setState({ desc: e.target.value, errD: false, drafted: false }),
+onFile: (e) => { const f = Array.from(e.target.files || []).slice(0, 5 - n); this.setState({ photos: s.photos.concat(f.map((x) => URL.createObjectURL(x))) }); e.target.value = ''; },
+toggleAdj: () => this.setState({ adj: !s.adj }),
+onMap: (e) => { if (!s.adj) return; const r = e.currentTarget.getBoundingClientRect(); this.setState({ px: Math.round(Math.min(95, Math.max(5, (e.clientX - r.left) / r.width * 100))), py: Math.round(Math.min(95, Math.max(15, (e.clientY - r.top) / r.height * 100))) }); },
+saveDraft: () => this.setState({ drafted: true }),
+toReview: () => { const c = !s.cat, d = !s.desc.trim(); if (c || d) this.setState({ errC: c, errD: d }); else this.setState({ step: 2, adj: false }); },
+toEdit: () => this.setState({ step: 1, gate: false }),
+demoIn: () => { this.sv({ inn: true }); this.setState({ inn: true, gate: false }); },
+submit: () => s.inn ? this.setState({ step: 3, gate: false, draft: s.off, ref: s.off ? '' : mk() }) : this.setState({ gate: true }),
+again: () => this.setState({ step:1, cat:'', auth:'m', desc:'', photos:[], px:50, py:60, adj:false, errC:false, errD:false, ref:'', draft:false, drafted:false }) };
+}
+}
+</script></body></html>
